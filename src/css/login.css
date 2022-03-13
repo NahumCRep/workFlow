@@ -1,0 +1,142 @@
+.login__container{
+    width: 50%;
+    height: auto;
+    background-color: var(--gray);
+    margin: 2rem auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.p_title{
+    font-size: 1.5rem;
+}
+.p_error{
+    font-size: 1rem;
+    color: var(--red);
+}
+.p_others{
+    width: 40%;
+    font-size: 0.8rem;
+}
+
+.login__form{
+    width: 40%;
+    /* height: 150px; */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 10px;
+}
+
+.form__input_div{
+    position: relative;
+    height: 30px;
+}
+
+
+.form__input_div input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--dark);
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.email_label{
+    position: absolute;
+    top: 0.3rem;
+    left: 0;
+    z-index: 5;
+    transition: top 0.3s ease-in-out;
+}
+
+.__email input:focus ~ .email_label,
+.__email input:not(:placeholder-shown) ~ .email_label,
+.__email input:-webkit-autofill ~ .email_label{
+    top: -0.9rem;
+    font-size: 0.8rem;
+}
+
+.password_label{
+    position: absolute;
+    top: 0.3rem;
+    left: 0;
+    z-index: 5;
+    transition: top 0.3s ease-in-out;
+}
+
+.__password input:focus ~ .password_label,
+.__password input:not(:placeholder-shown) ~ .password_label,
+.__password input:-webkit-autofill ~ .password_label{
+    top: -0.9rem;
+    font-size: 0.8rem;
+}
+
+.form__button{
+    height: 35px;
+    outline: none;
+    border: none;
+    background-color: var(--dark);
+    color: var(--ligth);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.form__button:hover{
+    letter-spacing: 2px;
+}
+
+.login_google{
+    width: 40%;
+    height: 40px;
+    background-color: antiquewhite;
+    text-decoration: none;
+}
+.login_google span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark);
+    transition: all 0.3s ease-in-out;
+}
+
+.login_google:hover > span{
+    letter-spacing: 2px;
+}
+
+
+@media screen and (max-width: 750px) {
+    .login__container{
+        width: 70%;
+    }
+
+    .p_title{
+        font-size: 1.2rem;
+    }
+    .p_others{
+        width: 80%;
+    }
+
+    .login__form{
+        width: 80%;
+    }
+
+    .login_google{
+        width: 80%;
+    }  
+}
+
+
