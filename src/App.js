@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import { Home, Login, Dashboard, MyTeams } from './pages'
+import { Home, Login, Dashboard, MyTeams, Team, Members } from './pages'
 import { useDispatch, useSelector } from 'react-redux';
 import { login, validate } from './features/user/userSlice';
 
@@ -13,7 +13,7 @@ function App() {
     console.log(user)
     dispatch(validate()); 
     
-    console.log("validaar")
+    console.log("validar")
   },[]);
 
   return (
@@ -24,6 +24,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/teams' element={<MyTeams />} />
+        <Route path='/dashboard/team' element={<Team />} />
+        <Route path='/dashboard/team/members' element={<Members />} />
       </Routes>
     </BrowserRouter>
   );
