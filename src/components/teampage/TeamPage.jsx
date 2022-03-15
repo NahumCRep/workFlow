@@ -13,9 +13,9 @@ const TeamPage = ({ name, children }) => {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname == '/dashboard') {
+    if (location.pathname === '/dashboard') {
       setActiveMenuItem(0)
-    } else if (location.pathname == '/dashboard/teams') {
+    } else if (location.pathname === '/dashboard/teams') {
       setActiveMenuItem(1)
     }
   }, [location.pathname])

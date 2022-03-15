@@ -24,7 +24,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/teams' element={<MyTeams />} />
-        <Route path='/dashboard/team' element={<Team />} />
+        <Route path='/dashboard/team/:id' element={<Team />} />
         <Route path='/dashboard/team/members' element={<Members />} />
       </Routes>
     </BrowserRouter>
