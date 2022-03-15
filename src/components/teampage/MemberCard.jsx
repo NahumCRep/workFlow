@@ -15,9 +15,9 @@ const MemberCard = () => {
             <p>Role</p>
             <p>Validator</p>
         </div>
-        <div className='flex items-center justify-center'>
-            <button className='w-10 h-10 bg-palette-lightgreen'><FaEdit />Edit Role</button>
-            <button className='w-10 h-10 bg-red-700'><FaTimes /></button>
+        <div className='flex items-center justify-center gap-3'>
+            <button className='w-32 h-10 bg-palette-lightgreen flex items-center justify-center gap-2'><FaEdit />Edit Role</button>
+            <button className='w-10 h-10 bg-red-700 flex justify-center items-center'><FaTimes /></button>
         </div>
     </div>
   )
