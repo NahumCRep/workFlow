@@ -26,7 +26,7 @@ const DashboardPage = ({ children }) => {
                     <p className='font-righteous '>{'nahum casco'}</p>
                 </div>
                 <hr className='w-[80%] m-auto border-white' />
-                <ul className='mt-2 h-full min-h-screen'>
+                <ul className='mt-2 h-full'>
                     <MenuItem title='Board' path='/dashboard' active={activeMenuItem == 0 ? true : false} ><IoHome color='#191A19' size={20} /></MenuItem>
                     <MenuItem title='My Teams' path='/dashboard/teams' active={activeMenuItem == 1 ? true : false} ><RiTeamFill color='#191A19' size={20} /></MenuItem>
                     <MenuItem title='Account' path='/dashboard/team' active={false} ><FaUserCircle color='#191A19' size={20} /></MenuItem>
