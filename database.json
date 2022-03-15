@@ -1,0 +1,49 @@
+{
+    "users":[
+        {
+            "id":"1764",
+            "name":"nahum casco",
+            "email":"nahumcasco@gmail.com"
+        }
+    ],
+    "teams":[
+        {
+            "id":"123dasda",
+            "name":"Front End",
+            "image":"",
+            "description":"",
+            "lider":{
+                "id":"1764",
+                "name":"nahum casco",
+                "email":"nahumcasco@gmail.com"
+            },
+            "date":"03/14/2022"
+        }
+    ],
+    "members":[
+        {
+            "id":"1234",
+            "member":{
+                "id":"1764",
+                "name":"nahum casco",
+                "email":"nahumcasco@gmail.com"
+            },
+            "role":"regular",
+            "teams":[
+                {
+                    "id":"123dasda",
+                    "name":"Front End",
+                    "lider":{
+                        "id":"1764",
+                        "name":"nahum casco",
+                        "email":"nahumcasco@gmail.com"
+                    },
+                    "date":"03/14/2022"
+                }
+            ]
+        }
+    ],
+    "groups":{
+
+    }
+}
