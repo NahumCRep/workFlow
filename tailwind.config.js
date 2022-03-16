@@ -30,6 +30,12 @@ module.exports = {
       animation:{
         fadein: 'fadein 0.3s ease-in 1',
         fadeout: 'fadeout 0.3s ease-out 1'
+      },
+      gridAutoColumns: {
+        '200': 'repeat(auto-fill, minmax(200px, 1fr))',
+      },
+      boxShadow: {
+        '3xl': '5px 0px 10px 0px rgba(75, 85, 99, 0.5)',
       }
     },
   },
