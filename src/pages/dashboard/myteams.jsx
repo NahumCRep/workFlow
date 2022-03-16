@@ -42,8 +42,17 @@ const MyTeams = () => {
         fetch('http://localhost:4000/teams?members.id=1234')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                setJoinedTeams(data)
+                let joined = []
+                data.forEach((team)=>{
+                    if(team.members.length !== 0){
+                        team.members.forEach((member)=>{
+                            if(member.id == lider.id){
+                                joined.push(team)
+                            }
+                        })
+                    }
+                })
+                setJoinedTeams(joined)
             })
             .catch(error => console.log(error))
     }
@@ -111,7 +120,7 @@ const MyTeams = () => {
                             : <div className='col-span-full'><Loader /></div>
                     }
                 </div>
-                <div className='w-full h-auto bg-palette-beige mt-5 p-2 shadow-lg shadow-gray-500'>
+                <div className='w-full h-auto bg-palette-beige my-5 p-2 shadow-lg shadow-gray-500'>
                     <div className='w-full h-14 flex items-center px-3 bg-palette-lightgreen'>
                         <h1 className='text-palette-beige font-righteous text-xl  '>Joined Teams</h1>
                     </div>
