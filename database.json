@@ -1,49 +1,123 @@
 {
-    "users":[
-        {
-            "id":"1764",
-            "name":"nahum casco",
-            "email":"nahumcasco@gmail.com"
-        }
-    ],
-    "teams":[
-        {
-            "id":"123dasda",
-            "name":"Front End",
-            "image":"",
-            "description":"",
-            "lider":{
-                "id":"1764",
-                "name":"nahum casco",
-                "email":"nahumcasco@gmail.com"
-            },
-            "date":"03/14/2022"
-        }
-    ],
-    "members":[
-        {
-            "id":"1234",
-            "member":{
-                "id":"1764",
-                "name":"nahum casco",
-                "email":"nahumcasco@gmail.com"
-            },
-            "role":"regular",
-            "teams":[
-                {
-                    "id":"123dasda",
-                    "name":"Front End",
-                    "lider":{
-                        "id":"1764",
-                        "name":"nahum casco",
-                        "email":"nahumcasco@gmail.com"
-                    },
-                    "date":"03/14/2022"
-                }
-            ]
-        }
-    ],
-    "groups":{
-
+  "users": [
+    {
+      "id": "1764",
+      "name": "nahum casco",
+      "email": "nahumcasco@gmail.com"
     }
+  ],
+  "teams": [
+    {
+      "name": "Front End",
+      "cover": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=815&q=80",
+      "description": "Desarrollo Front end",
+      "lider": {
+        "id": "1234",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "date": "2022-03-15T16:31:12.615Z",
+      "id": "oO8Q-cM",
+      "members": []
+    },
+    {
+      "name": "Back End",
+      "cover": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "description": "Desarrollo Front end",
+      "lider": {
+        "id": "1234",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "date": "2022-03-15T16:31:12.615Z",
+      "id": "oO98S-cE",
+      "members": []
+    },
+    {
+      "name": "Design",
+      "cover": "https://images.unsplash.com/photo-1587440871875-191322ee64b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+      "description": "Diseño de interfaces",
+      "lider": {
+        "id": "1234",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "date": "2022-03-15T19:25:40.099Z",
+      "id": "A96xPo9",
+      "members": []
+    },
+    {
+      "name": "Meeting",
+      "cover": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "description": "Reuniones y presentaciones",
+      "lider": {
+        "id": "1234",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "date": "2022-03-15T19:38:48.352Z",
+      "id": "hoqFWiH",
+      "members": [ {
+        "id": "1234676",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      }]
+    },
+    {
+      "name": "Other Team",
+      "cover": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      "description": "Reuniones y presentaciones",
+      "lider": {
+        "id": "4321",
+        "name": "ezequiel vallejos",
+        "email": "ezequielvallejos@gmail.com"
+      },
+      "date": "2022-03-15T20:38:48.352Z",
+      "id": "yr89Tsd",
+      "members": [ 
+        {
+          "id": "1234",
+          "name": "nahum casco",
+          "email": "nahumcasco@gmail.com"
+        }
+      ]
+    },
+    {
+      "name": "Games",
+      "cover": "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+      "description": "Video Games",
+      "lider": {
+        "id": "1234",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "members": [],
+      "date": "2022-03-15T23:54:41.903Z",
+      "id": "ZjAe42C"
+    }
+  ],
+  "members": [
+    {
+      "id": "1234",
+      "member": {
+        "id": "1764",
+        "name": "nahum casco",
+        "email": "nahumcasco@gmail.com"
+      },
+      "role": "regular",
+      "teams": [
+        {
+          "id": "123dasda",
+          "name": "Front End",
+          "lider": {
+            "id": "1764",
+            "name": "nahum casco",
+            "email": "nahumcasco@gmail.com"
+          },
+          "date": "03/14/2022"
+        }
+      ]
+    }
+  ],
+  "groups": {}
 }
