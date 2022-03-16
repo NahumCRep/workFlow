@@ -14,7 +14,6 @@ export const login = createAsyncThunk("user/login",async (credentials,thunkAPI)=
             })
         })
     const data = await response.json()
-    // console.log(data)
     if(data.message){
         return thunkAPI.rejectWithValue(data.message)
     }
