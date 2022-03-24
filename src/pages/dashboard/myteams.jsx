@@ -4,15 +4,18 @@ import create from '../../assets/images/teamup.svg'
 import { FaTimes } from 'react-icons/fa'
 import Loader from '../../components/Loader'
 import TeamCard from '../../components/dashboard/TeamCard'
+import { get, post } from '../../api'
+import { useSelector } from 'react-redux'
 
 
 const MyTeams = () => {
+    const user = useSelector(state =>  state.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [allTeams, setAllTeams] = useState(null)
     const [joinedTeams, setJoinedTeams] = useState(null)
     const [teamFormData, setTeamFormData] = useState({
         name: "",
-        cover: "",
+        img: "",
         description: ""
     })
 
@@ -30,12 +33,20 @@ const MyTeams = () => {
     }
 
     const getTeams = () => {
-        fetch('http://localhost:4000/teams?lider.id=1234')
-            .then(res => res.json())
-            .then(data => {
-                setAllTeams(data)
-            })
-            .catch(error => console.log(error))
+        // fetch('http://localhost:4000/teams?lider.id=1234')
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setAllTeams(data)
+        //     })
+        //     .catch(error => console.log(error))
+
+       get('/teams/')
+       .then(res => {
+           console.log('equipos',res.data)
+            setAllTeams(res.data)
+        })
+       .catch(error=>console.log(error))
+     
     }
 
      const getJoinedTeams = () => {
@@ -59,31 +70,37 @@ const MyTeams = () => {
 
     const addTeam = (event) => {
         event.preventDefault()
-        fetch('http://localhost:4000/teams', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                ...teamFormData,
-                lider: lider,
-                members: [],
-                date: new Date()
-            })
+        post('/teams',teamFormData)
+        .then(res=>{
+            setAllTeams([...allTeams,res.data])
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log("agregado")
-                setIsModalOpen(false)
-                setTeamFormData({
-                    name: "",
-                    cover: "",
-                    description: ""
-                })
-                getTeams()
-            })
-            .catch(error => console.log(error))
+        setIsModalOpen(false)
+        // fetch('http://localhost:4000/teams', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         ...teamFormData,
+        //         lider: lider,
+        //         members: [],
+        //         date: new Date()
+        //     })
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log("agregado")
+        //         setIsModalOpen(false)
+        //         setTeamFormData({
+        //             name: "",
+        //             cover: "",
+        //             description: ""
+        //         })
+        //         getTeams()
+        //     })
+        //     .catch(error => console.log(error))
     }
 
     useEffect(() => {
+        console.log(user)
         getTeams()
         getJoinedTeams()
     }, [])
@@ -99,7 +116,7 @@ const MyTeams = () => {
                         </button>
                     </div>
                 </div>
-                <div className='w-full h-auto min-h-[200px] grid grid-cols-3 gap-3 p-2 bg-palette-beige mt-3 shadow-lg shadow-gray-500'>
+                <div className='w-full h-auto min-h-[200px] grid grid-cols-1 md:grid-cols-3 gap-3 p-2 bg-palette-beige mt-3 shadow-lg shadow-gray-500'>
                     {
                         allTeams
                             ? (
@@ -107,7 +124,7 @@ const MyTeams = () => {
                                     ? (
                                         allTeams.map(team => {
                                             return (
-                                                <TeamCard key={team.id} team={team} />
+                                                <TeamCard key={team._id} team={team} />
                                             )
                                         })
                                     )
@@ -161,8 +178,8 @@ const MyTeams = () => {
                                 <form onSubmit={addTeam} className='flex flex-col gap-1 px-3 font-jost'>
                                     <label htmlFor='name' className='mt-2 font-semibold'>Name</label>
                                     <input name="name" type="text" onChange={handleChange} className='w-full h-10 bg-palette-gray px-2 rounded-md outline-none border-2 focus:border-palette-lightgreen' />
-                                    <label htmlFor='image' className='mt-2 font-semibold'>Image URL</label>
-                                    <input name="cover" type="text" onChange={handleChange} className='w-full h-10 bg-palette-gray px-2 rounded-md outline-none border-2 focus:border-palette-lightgreen' />
+                                    <label htmlFor='img' className='mt-2 font-semibold'>Image URL</label>
+                                    <input name="img" type="text" onChange={handleChange} className='w-full h-10 bg-palette-gray px-2 rounded-md outline-none border-2 focus:border-palette-lightgreen' />
                                     <label htmlFor='description' className='mt-2 font-semibold'>Description</label>
                                     <input name="description" type="text" onChange={handleChange} className='w-full h-10 bg-palette-gray px-2 rounded-md outline-none border-2 focus:border-palette-lightgreen' />
                                     <button className='w-full h-12 mt-4 rounded-md bg-palette-lightgreen text-white transition-all duration-700 ease-in-out hover:tracking-widest'>Create</button>

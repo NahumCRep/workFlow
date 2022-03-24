@@ -5,6 +5,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/login.css'
 import welcome from '../assets/images/login.svg'
+import { URL } from '../config'
 
 export default function Login() {
     const [isNotLoginError, setIsNoLoginError] = useState(true);
@@ -23,9 +24,9 @@ export default function Login() {
         }
     }, [user])
 
-    const iniciarSesion = (event) => {
-        event.preventDefault()
-        const { email: { value: email }, password: { value: password } } = event.target
+    const iniciarSesion = (e) => {
+        e.preventDefault()
+        const { email: { value: email }, password: { value: password } } = e.target
         dispatch(login({ email, password }));
     }
 
@@ -58,14 +59,14 @@ export default function Login() {
                 </div>
                 <div className='w-full flex flex-col items-center mt-2 font-jost'>
                     <p>...or sign in with</p>
-                    <a href="https://backendtzuzulcode.wl.r.appspot.com/auth/google" className='w-full h-12 bg-white mt-4 rounded-xl justify-center items-center'>
+                    <a href={`${URL}/auth/google`} className='w-full h-12 bg-white mt-4 rounded-xl justify-center items-center'>
                         <p className='flex gap-2 w-full h-full justify-center items-center  transition-all duration-700 ease-in-out hover:tracking-widest'>
                             <FcGoogle /> Google
                         </p>
                     </a>
                     <p className='w-full mt-3'>
                         Dont have an account ? 
-                        <u><Link to='/' className='font-bold text-palette-green ml-3' >Create one</Link></u>
+                        <u><Link to='/signup' className='font-bold text-palette-green ml-3' >Create one</Link></u>
                     </p>
                 </div>
             </div>
