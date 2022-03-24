@@ -1,19 +1,16 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import { Home, Login, Dashboard, MyTeams, Team, Members } from './pages'
+import { Home, Login, SignUp, Dashboard, MyTeams, Team, Groups, Members, Tasks } from './pages'
 import { useDispatch, useSelector } from 'react-redux';
-import { login, validate } from './features/user/userSlice';
+import { validate } from './features/user/userSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(state=>state.user)
-  // console.log(user);
+  // const user = useSelector(state=>state.user)
+
   useEffect(()=>{
-    console.log(user)
     dispatch(validate()); 
-    
-    console.log("validar")
   },[]);
 
   return (
@@ -22,10 +19,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/teams' element={<MyTeams />} />
         <Route path='/dashboard/team/:id' element={<Team />} />
+        <Route path='/dashboard/team/:id/groups' element={<Groups />} />
         <Route path='/dashboard/team/:id/members' element={<Members />} />
+        <Route path='/dashboard/team/:id/tasks' element={<Tasks />} />
       </Routes>
     </BrowserRouter>
   );
