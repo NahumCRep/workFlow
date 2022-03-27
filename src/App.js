@@ -23,7 +23,6 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/teams' element={<MyTeams />} />
         <Route path='/dashboard/team/:id' element={<Team />} />
-        <Route path='/dashboard/team/:id/groups' element={<Groups />} />
         <Route path='/dashboard/team/:id/members' element={<Members />} />
         <Route path='/dashboard/team/:id/tasks' element={<Tasks />} />
       </Routes>
