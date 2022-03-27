@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .btn-active{
+        @apply bg-palette-dark border-[3px] text-palette-beige border-palette-lightgreen border-dashed
+    }
+}
