@@ -6,11 +6,14 @@ import { IoHome } from 'react-icons/io5'
 import { HiUserGroup } from 'react-icons/hi'
 import { BsGearFill } from 'react-icons/bs'
 import MenuItem from '../dashboard/MenuItem'
+import { get } from '../../api'
+
+
 
 const TeamPage = ({ children }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null)
   const [team, setTeam] = useState()
-  const reduxTeam = useSelector(state => state.team) 
+  // const reduxTeam = useSelector(state => state.team) 
   const location = useLocation()
   const { id } = useParams()
 
@@ -28,9 +31,17 @@ const TeamPage = ({ children }) => {
 
   // }, [location.pathname])
 
-  useEffect(()=>{
-    console.log('team page', reduxTeam)
-    setTeam(reduxTeam)
+    useEffect(() => {
+      get("/teams/"+id)
+      .then(res=>{
+          setTeam(res.data)
+      })
+      .catch(error=>console.log(error))
+  }, [location.pathname])
+
+  // useEffect(()=>{
+  //   console.log('team page', reduxTeam)
+  //   setTeam(reduxTeam)
     // fetch(`http://localhost:4000/teams?id=${id}`)
     // .then(res => res.json())
     // .then(data => {
@@ -38,7 +49,7 @@ const TeamPage = ({ children }) => {
     //   setTeam(data)
     // })
     // .catch(error => console.log(error))
-  },[reduxTeam])
+  // },[reduxTeam])
 
 
   return (
@@ -48,6 +59,7 @@ const TeamPage = ({ children }) => {
           {
             // team && (team[0].name)
             team && team.name
+            
           }
         </h1>
         <ul className='px-7 py-5 flex flex-col gap-2'>
@@ -63,7 +75,7 @@ const TeamPage = ({ children }) => {
         <hr className='w-[80%] m-auto border-white' />
         <ul className='mt-2'>
           <MenuItem title='Dashboard' path='/dashboard' active={activeMenuItem == 0 ? true : false} ><FaTh color='#191A19' size={20} /></MenuItem>
-          <MenuItem title='Groups' path={`/dashboard/team/${id}/groups`} active={activeMenuItem == 1 ? true : false} ><HiUserGroup color='#191A19' size={20} /></MenuItem>
+          <MenuItem title='Groups' path={`/dashboard/team/${id}`} active={activeMenuItem == 1 ? true : false} ><HiUserGroup color='#191A19' size={20} /></MenuItem>
           <MenuItem title='Members' path={`/dashboard/team/${id}/members`} active={activeMenuItem == 2 ? true : false} ><FaUserAlt color='#191A19' size={20} /></MenuItem>
           <MenuItem title='Tasks' path={`/dashboard/team/${id}/tasks`} active={activeMenuItem == 3 ? true : false} ><FaTasks color='#191A19' size={20} /></MenuItem>
           <MenuItem title='Settings' path='/' active={false} ><BsGearFill color='#191A19' size={20} /></MenuItem>

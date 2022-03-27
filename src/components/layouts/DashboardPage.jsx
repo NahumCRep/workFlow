@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import MenuItem from './MenuItem'
+import MenuItem from '../dashboard/MenuItem'
 import { RiTeamFill, RiLogoutBoxLine } from 'react-icons/ri'
 import { FaTasks, FaUserCircle, FaTh } from 'react-icons/fa'
 import { MdOutlineTaskAlt } from 'react-icons/md'
@@ -13,7 +13,6 @@ const DashboardPage = ({ children }) => {
     const user = useSelector((state) => state.user)
 
     useEffect(() => {
-        console.log(user)
         if (location.pathname == '/dashboard') {
             setActiveMenuItem(0)
         } else if (location.pathname == '/dashboard/teams') {
