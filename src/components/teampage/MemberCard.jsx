@@ -5,7 +5,7 @@ const MemberCard = () => {
   return (
     <div className='w-full h-12 mt-1 bg-palette-beige  divide-x grid grid-cols-4 font-jost text-base '>
         <div className='flex items-center justify-center gap-3 h-full'>
-            <div className='w-8 h-8 bg-palette-green rounded-full'></div>
+            <div className='w-8 h-8 bg-palette-green rounded-full' title="nahum casco"></div>
             <p>nahum casco</p>
         </div>
         <div className='flex items-center justify-center gap-3'>
