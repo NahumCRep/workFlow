@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import TeamPage from '../../../components/teampage/TeamPage'
+import TeamPage from '../../../components/layouts/TeamPage'
 import TaskContainer from '../../../components/tasks/TaskContainer'
 import TaskItem from '../../../components/tasks/TaskItem';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
