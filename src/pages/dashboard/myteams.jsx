@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import DashboardPage from '../../components/dashboard/DashboardPage'
+import DashboardPage from '../../components/layouts/DashboardPage'
 import create from '../../assets/images/teamup.svg'
 import { FaTimes } from 'react-icons/fa'
 import Loader from '../../components/Loader'
@@ -46,7 +46,6 @@ const MyTeams = () => {
             setAllTeams(res.data)
         })
        .catch(error=>console.log(error))
-     
     }
 
      const getJoinedTeams = () => {
@@ -139,7 +138,7 @@ const MyTeams = () => {
                 </div>
                 <div className='w-full h-auto bg-palette-beige my-5 p-2 shadow-lg shadow-gray-500'>
                     <div className='w-full h-14 flex items-center px-3 bg-palette-lightgreen'>
-                        <h1 className='text-palette-beige font-righteous text-xl  '>Joined Teams</h1>
+                        <h1 className='text-palette-beige font-righteous text-xl'>Joined Teams</h1>
                     </div>
                     <div className='w-full h-auto min-h-[200px] grid grid-cols-3 gap-2 mt-3 '>
                         {
