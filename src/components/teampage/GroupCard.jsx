@@ -2,21 +2,29 @@ import React, { useState } from 'react'
 import { TiGroup } from 'react-icons/ti'
 import { GoGear } from 'react-icons/go'
 import GroupOptionsModal from '../modals/GroupOptionsModal'
+import { useSelector } from 'react-redux'
 
-const GroupCard = ({groupID, list, refreshData }) => {
+const GroupCard = ({ groupID, list, refreshData }) => {
     const [optionModalOpen, setOptionModalOpen] = useState(false)
+    const userRole = useSelector(state => state.team)
     return (
-        <div className='h-40 flex flex-col gap-1 bg-palette-dark p-3 font-jost '>
+        <div className='h-40 flex flex-col gap-1 bg-palette-dark p-3 font-jost overflow-x-hidden'>
             <div>
                 <div className='flex justify-between items-center'>
                     <TiGroup color='#D8E9A8' size={25} />
-                    <GoGear
-                        className='cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-90'
-                        title='options'
-                        color='#D8E9A8'
-                        size={25}
-                        onClick={()=>setOptionModalOpen(true)}
-                    />
+                    {
+                        userRole && (
+                            userRole === 'lider' && (
+                                <GoGear
+                                    className='cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-90'
+                                    title='options'
+                                    color='#D8E9A8'
+                                    size={25}
+                                    onClick={() => setOptionModalOpen(true)}
+                                />
+                            )
+                        )
+                    }
                 </div>
                 <h1 className='text-lg font-medium text-palette-beige'>{list.name}</h1>
             </div>
@@ -26,7 +34,7 @@ const GroupCard = ({groupID, list, refreshData }) => {
                 <p>{list.tasks.length}</p>
             </div>
             {
-                optionModalOpen && <GroupOptionsModal group={groupID} listModalState={optionModalOpen} listData={list} setModalOpen={setOptionModalOpen} refreshGroups={refreshData}  />
+                optionModalOpen && <GroupOptionsModal group={groupID} listModalState={optionModalOpen} listData={list} setModalOpen={setOptionModalOpen} refreshGroups={refreshData} />
             }
         </div>
     )

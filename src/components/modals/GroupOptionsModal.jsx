@@ -90,7 +90,7 @@ const GroupOptionsModal = ({ group, listModalState, listData, setModalOpen, refr
                             {
                                 actionOption == 'edit'
                                     ? 'Description'
-                                    : 'insert the name of the group to delete'
+                                    : 'insert group name to confirm deletion'
                             }
                         </label>
                         <input
