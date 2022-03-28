@@ -81,7 +81,7 @@ const TeamPage = ({ children }) => {
           <MenuItem title='Settings' path='/' active={false} ><BsGearFill color='#191A19' size={20} /></MenuItem>
         </ul>
       </div>
-      <main className='w-[85%] h-auto overflow-y-auto'>
+      <main className='w-[85%] h-auto overflow-y-auto overflow-x-hidden'>
         {children}
       </main>
     </section>

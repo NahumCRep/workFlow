@@ -19,12 +19,6 @@ const MyTeams = () => {
         description: ""
     })
 
-    const lider = {
-        "id": "1234",
-        "name": "nahum casco",
-        "email": "nahumcasco@gmail.com"
-    }
-
     const handleChange = (e) => {
         setTeamFormData({
             ...teamFormData,
@@ -33,38 +27,23 @@ const MyTeams = () => {
     }
 
     const getTeams = () => {
-        // fetch('http://localhost:4000/teams?lider.id=1234')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setAllTeams(data)
-        //     })
-        //     .catch(error => console.log(error))
-
        get('/teams/')
        .then(res => {
-           console.log('equipos',res.data)
-            setAllTeams(res.data)
-        })
-       .catch(error=>console.log(error))
-    }
-
-     const getJoinedTeams = () => {
-        fetch('http://localhost:4000/teams?members.id=1234')
-            .then(res => res.json())
-            .then(data => {
-                let joined = []
-                data.forEach((team)=>{
-                    if(team.members.length !== 0){
-                        team.members.forEach((member)=>{
-                            if(member.id == lider.id){
-                                joined.push(team)
-                            }
-                        })
+            let otherTeams = []
+            let myTeams = []
+            if(user?.id){
+                res.data.forEach((datateam) => {
+                    if(user.id === datateam.idLeader._id){
+                        myTeams.push(datateam)
+                    }else{
+                        otherTeams.push(datateam)
                     }
                 })
-                setJoinedTeams(joined)
-            })
-            .catch(error => console.log(error))
+                setAllTeams(myTeams)
+                setJoinedTeams(otherTeams)
+            }
+        })
+       .catch(error=>console.log(error))
     }
 
     const addTeam = (event) => {
@@ -74,34 +53,11 @@ const MyTeams = () => {
             setAllTeams([...allTeams,res.data])
         })
         setIsModalOpen(false)
-        // fetch('http://localhost:4000/teams', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({
-        //         ...teamFormData,
-        //         lider: lider,
-        //         members: [],
-        //         date: new Date()
-        //     })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log("agregado")
-        //         setIsModalOpen(false)
-        //         setTeamFormData({
-        //             name: "",
-        //             cover: "",
-        //             description: ""
-        //         })
-        //         getTeams()
-        //     })
-        //     .catch(error => console.log(error))
     }
 
     useEffect(() => {
-        console.log(user)
+        console.log('usuario',user)
         getTeams()
-        getJoinedTeams()
     }, [])
 
     return (
