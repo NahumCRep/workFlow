@@ -18,18 +18,26 @@ const post = async (url, data) => {
     })
 }
 
+const postComment = async (url, data) => {
+    return await instance.post(url, data, {
+        withCredentials: true, 
+        headers: { 'content-type': 'multipart/form-data' }
+    })
+}
+
 const put = async (url, data) => {
     return await instance.put(url, data, {
         withCredentials: true,
     })
 }
 
+// crear otro del que reciba data para eliminar los grupos
 const del = async (url, data) => {
-    return await instance.delete(url, data, {
+    return await instance.delete(url, {
         withCredentials: true,
     })
 }
 
 
 export default instance
-export { get, post, put, del }
+export { get, post, put, del, postComment }
