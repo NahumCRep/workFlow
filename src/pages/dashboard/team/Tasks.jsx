@@ -4,70 +4,10 @@ import TeamPage from '../../../components/layouts/TeamPage'
 import CustomDroppable from '../../../components/CustomDroppable';
 import TaskContainer from '../../../components/tasks/TaskContainer'
 import TaskCreateModal from '../../../components/modals/TaskCreateModal'
+import TaskModal from '../../../components/modals/TaskModal';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from 'uuid';
 import { get, post } from '../../../api'
-
-
-const tasklist = [
-  {
-    id: 'task1',
-    task: 'task 1 probando',
-    state: 'new'
-  },
-  {
-    id: 'task2',
-    task: 'task 2 probando',
-    state: 'new'
-  },
-  {
-    id: 'task3',
-    task: 'task 3 probando',
-    state: 'new'
-  },
-  {
-    id: 'task4',
-    task: 'task 4 probando',
-    state: 'new'
-  },
-  {
-    id: 'task5',
-    task: 'task 5 probando',
-    state: 'new'
-  },
-  {
-    id: 'task6',
-    task: 'task 6 probando',
-    state: 'new'
-  },
-  {
-    id: 'task7',
-    task: 'task 7 probando',
-    state: 'new'
-  },
-  {
-    id: 'task8',
-    task: 'task 8 probando',
-    state: 'new'
-  }
-]
-
-const stateColumns = {
-  [uuid()]: {
-    name: "Tasks",
-    items: tasklist
-  },
-  [uuid()]: {
-    name: "In Progress",
-    items: []
-  },
-  [uuid()]: {
-    name: "Waiting for Approval",
-    items: []
-  }
-};
-
-
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -125,10 +65,12 @@ const Tasks = () => {
   const [listSelected, setListSelected] = useState({})
   const [currentTeam, setCurrentTeam] = useState({})
   const [createModalOpen, setCreateModalOpen] = useState(false)
+  const [taskModalOpen, setTaskModalOpen] = useState(false)
   const params = useParams()
 
-  const getListSelected = (e) => {
-    const listFiltered = allLists.filter((listItem) => listItem._id === e.target.value)
+  const getListSelected = (listID) => {
+    const listFiltered = allLists.filter((listItem) => listItem._id === listID)
+    // console.log('filtrada', listFiltered)
     setListSelected(...listFiltered)
     setColumns({
       ...columns,
@@ -137,34 +79,40 @@ const Tasks = () => {
         items: listFiltered[0].tasks
       },
     })
-    console.log('lista seleccionada', listFiltered)
   }
 
-  const getTasks = () => {
-    setColumns({
-      ...columns,
-      'NewTsk': {
-        name: "Tasks",
-        items: listSelected.tasks
-      },
-    })
-    console.log(columns)
-  }
-
-  const addTask = () => {
-    post(`lists/${listSelected._id}/addTask`,{})
-    .then(res => console.log(res.data))
-    .catch(error => console.log(error))
+  const handleSelectChange = (e) => {
+    getListSelected(e.target.value)
   }
 
   const getLists = () => {
     get("/teams/" + params.id)
       .then(res => {
-        console.log(res.data)
         setCurrentTeam(res.data)
         setAllLists(res.data.lists)
       })
       .catch(error => console.log(error))
+  }
+
+  const refreshTasks = (listId) => {
+    get("/teams/" + params.id)
+      .then(res => {
+        // console.log(res.data)
+        setAllLists(res.data.lists)
+        setCurrentTeam(res.data)
+        const listFiltered = res.data.lists.filter((listItem) => listItem._id === listId)
+        setListSelected(...listFiltered)
+        setColumns({
+          ...columns,
+          'NewTsk': {
+            name: "Tasks",
+            items: listFiltered[0].tasks
+          },
+        })
+      })
+      .catch(error => console.log(error))
+    console.log('todas las listas', allLists)
+    // getListSelected(listId)
   }
 
   useEffect(() => {
@@ -174,13 +122,13 @@ const Tasks = () => {
   return (
     <TeamPage>
       <section>
-        <div className='w-full h-80 bg-slate-500 px-4 py-2'>
+        <div className='w-full h-80 px-4 py-2'>
           <div className='bg-palette-beige h-16 flex items-center px-2'>
             <h1 className='font-righteous text-palette-dark text-xl'>Tasks</h1>
           </div>
-          <div>
-            <p>Select Group</p>
-            <select onChange={getListSelected}>
+          <div className='px-2 font-jost mt-6'>
+            <p className='font-bold text-lg'>Select Group</p>
+            <select onChange={handleSelectChange} className="w-[200px] h-7 border-2 border-dashed border-palette-dark">
               <option value="" disabled selected>select...</option>
               {allLists.map((listItem) => {
                 return (
@@ -189,13 +137,13 @@ const Tasks = () => {
               })}
             </select>
           </div>
-          <div>
-            <p>Name: {listSelected.name}</p>
-            <p>Description: {listSelected.description}</p>
+          <div className='px-2 mt-6'>
+            <p><span className='font-medium'>Name:</span> {listSelected.name}</p>
+            <p><span className='font-medium'>Description:</span> {listSelected.description}</p>
           </div>
-          <button onClick={() => setCreateModalOpen(true)}>add task</button>
+          <button onClick={() => setCreateModalOpen(true)} className="bg-palette-gray ml-2 mt-4 py-2 px-4" >add task</button>
         </div>
-        <div className='w-full h-[500px] grid md:grid-cols-3 gap-2 justify-items-center px-4'>
+        <div className='w-full h-[500px] grid md:grid-cols-3 justify-items-center px-2 mb-2'>
           <DragDropContext
             onDragEnd={result => onDragEnd(result, columns, setColumns)}
           >
@@ -203,7 +151,7 @@ const Tasks = () => {
               Object.entries(columns).map(([columnId, column], index) => {
                 return (
                   <TaskContainer key={columnId} title={column.name}>
-                    <CustomDroppable columnID={columnId} list={column} />
+                    <CustomDroppable columnID={columnId} list={column} currentList={listSelected} refreshData={refreshTasks} team={currentTeam} />
                   </TaskContainer>
                 )
               })
@@ -211,9 +159,7 @@ const Tasks = () => {
           </DragDropContext>
         </div>
       </section>
-      {
-        createModalOpen && <TaskCreateModal taskModalState={createModalOpen} setModalOpen={setCreateModalOpen} team={currentTeam} currentList={listSelected} />
-      }
+      {createModalOpen && <TaskCreateModal taskModalState={createModalOpen} setModalOpen={setCreateModalOpen} team={currentTeam} currentList={listSelected} refreshData={refreshTasks} />}
     </TeamPage>
   )
 }
