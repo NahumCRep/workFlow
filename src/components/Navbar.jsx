@@ -26,15 +26,12 @@ const Navbar = () => {
                     <Link to='/' className='w-auto' ><p className='w-auto font-righteous text-2xl text-palette-beige '><span className='text-palette-lightgreen'>Task</span>Flow</p></Link>
                 </div>
             </div>
-            <div className='w-[67%] flex justify-between items-center'>
-                <ul className='text-palette-beige flex font-jost gap-9 justify-center'>
+            <div className='flex justify-between items-center'>
+                <ul className='text-palette-beige flex gap-5 justify-end items-center'>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to='/'>About</Link></li>
                     <li><Link to="/">Services</Link></li>
                     <li><Link to="/">Join</Link></li>
-                </ul>
-                <ul className='text-palette-beige flex gap-5 justify-end items-center'>
-                    {/* <li><Link to='/dashboard'>Dashboard</Link></li> */}
                     {
                         logged
                             ? (
