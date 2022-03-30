@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import { Home, Login, SignUp, Dashboard, MyTeams, Team, Groups, Members, Tasks } from './pages'
+import { Home, Login, SignUp, Dashboard, MyTeams, Team, Members, Tasks } from './pages'
 import { useDispatch, useSelector } from 'react-redux';
 import { validate } from './features/user/userSlice';
 
