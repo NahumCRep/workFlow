@@ -62,16 +62,6 @@ const TeamPage = ({ children }) => {
             
           }
         </h1>
-        {/* <ul className='px-7 py-5 flex flex-col gap-2'>
-          <li className='flex justify-between items-center'>
-            <h2 className='font-jost font-semibold text-lg'>Role </h2>
-            <h4 className='text-center w-20 font-jost font-medium'>{'Lider'}</h4>
-          </li>
-          <li className='flex justify-between items-center'>
-            <h2 className='font-jost font-semibold text-lg'>Tasks </h2>
-            <h4 className='text-center w-20 font-jost font-medium'>{'2'}</h4>
-          </li>
-        </ul> */}
         <hr className='w-[80%] m-auto border-white' />
         <ul className='mt-2'>
           <MenuItem title='Dashboard' path='/dashboard' active={activeMenuItem == 0 ? true : false} ><FaTh color='#191A19' size={20} /></MenuItem>

@@ -56,7 +56,6 @@ const MyTeams = () => {
     }
 
     useEffect(() => {
-        console.log('usuario',user)
         getTeams()
     }, [])
 

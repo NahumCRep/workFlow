@@ -38,7 +38,7 @@ const SignUp = () => {
 
     return (
         <section className="bg-palette-beige h-auto min-h-screen py-12 md:py-0 flex flex-col gap-7  justify-center items-center md:flex-row">
-            <div className="w-[90%] h-1/2 md:w-[40%] md:h-4/5  flex flex-col pt-7 ">
+            <div className="w-[90%] h-1/2 md:w-[40%] md:h-4/5  flex flex-col pt-20 mb-12  ">
                 <form onSubmit={SignUpUser} className='w-full p-4 bg-palette-lightgreen rounded-xl font-jost'>
                     <h1 className='font-righteous text-4xl text-palette-dark'>Register</h1>
                     <div className='flex flex-col w-full mt-4'>

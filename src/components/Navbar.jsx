@@ -20,7 +20,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="w-full h-16 bg-palette-dark fixed flex justify-between items-center px-8">
+        <nav className="w-full h-16 bg-palette-dark fixed z-50 flex justify-between items-center px-8">
             <div className='w-[33%]'>
                 <div className='w-fit'>
                     <Link to='/' className='w-auto' ><p className='w-auto font-righteous text-2xl text-palette-beige '><span className='text-palette-lightgreen'>Task</span>Flow</p></Link>

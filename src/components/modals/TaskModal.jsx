@@ -9,6 +9,7 @@ const TaskModal = ({ taskModalState, setModalOpen, currentTask, list, refreshTas
     const [isEditing, setIsEditing] = useState(false)
     const [isCommenting, setIsCommenting] = useState(false)
     const [assignedMembers, setAssignedMembers] = useState([])
+    const [commentsList, setCommentsList] = useState([])
     const role = useSelector(state => state.team)
     const descriptionRef = useRef(null)
     const commentRef = useRef(null)
@@ -26,8 +27,9 @@ const TaskModal = ({ taskModalState, setModalOpen, currentTask, list, refreshTas
             })
         })
         console.log('miembros', taskMembers)
+        setCommentsList(currentTask.comments[0].content)
         setAssignedMembers(taskMembers)
-        console.log(currentTask)
+        // console.log(currentTask.comments)
     }, [])
 
 
@@ -54,14 +56,14 @@ const TaskModal = ({ taskModalState, setModalOpen, currentTask, list, refreshTas
 
         const {content, file} = e.target
         
-
         let commentData = new FormData()
         commentData.append('content', content.value)
         commentData.append('file', file.files[0])
-        postComment(`/tasks/${currentTask._id}/addComment`, commentData)
+        post(`/tasks/${currentTask._id}/addComment`, commentData)
             .then(res => console.log(res))
             .catch(error => console.log(error))
     }
+
     return (
         <div>
             <div className='absolute left-0 top-0 h-screen w-screen max-w-full text-palette-dark bg-black bg-opacity-30' onClick={() => { setModalOpen(false) }}></div>
@@ -100,6 +102,9 @@ const TaskModal = ({ taskModalState, setModalOpen, currentTask, list, refreshTas
                                             </div>
                                         </form>
                                     )}
+                                    {
+                                        console.log('comentarios', commentsList)
+                                    }
                                 </div>
                             </div>
                         </div>
