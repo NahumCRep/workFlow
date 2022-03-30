@@ -31,13 +31,17 @@ const put = async (url, data) => {
     })
 }
 
-// crear otro del que reciba data para eliminar los grupos
 const del = async (url, data) => {
-    return await instance.delete(url, {
-        withCredentials: true,
-    })
+    if(data){
+        return await instance.delete(url, data, {
+            withCredentials: true,
+        })
+    }else{
+        return await instance.delete(url, {
+            withCredentials: true,
+        })
+    }
 }
-
 
 export default instance
 export { get, post, put, del, postComment }
